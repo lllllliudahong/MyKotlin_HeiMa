@@ -35,8 +35,8 @@ abstract class BaseFragment : Fragment() , AnkoLogger {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initListener()
         initData()
+        initListener()
     }
 
     /**

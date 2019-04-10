@@ -14,8 +14,8 @@ abstract class BaseActivity : AppCompatActivity() ,AnkoLogger{
         super.onCreate(savedInstanceState)
 
         setContentView(getLayoutId())
-        initListener()
         initData()
+        initListener()
     }
 
     /**

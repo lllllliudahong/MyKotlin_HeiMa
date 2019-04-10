@@ -51,9 +51,7 @@ class MainActivity : BaseActivity() , ToolBarManager{
     override fun initListener() {
         //设置tab切换监听
         bottomBar.setOnTabSelectListener{
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, FragmentUtil.fragmentUtil.getFragment(it)!!,it.toString())
-            transaction.commit()
+            FragmentUtil.fragmentUtil.getFragment(it,supportFragmentManager.beginTransaction())
         }
     }
 }
