@@ -26,7 +26,7 @@ class FragmentUtil private constructor(){//私有化构造方法
 
 
     /**
-     * 根据tab id 获取对应的fragment
+     * 根据tab id 获取对应的fragment   https://www.jianshu.com/p/c4c63e43bd00
      */
     var isNull = 0
     fun getFragment(tabId : Int, transaction : FragmentTransaction){
