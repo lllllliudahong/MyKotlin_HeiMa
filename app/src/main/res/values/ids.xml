@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tab_card" type="id"/>
+    <item name="tab_commend" type="id"/>
+    <item name="tab_hall" type="id"/>
+    <item name="tab_meet" type="id"/>
+</resources>

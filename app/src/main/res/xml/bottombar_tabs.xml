@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+            id="@id/tab_card"
+            icon="@mipmap/tboom_card"
+            title="card" />
+    <tab
+            id="@id/tab_commend"
+            icon="@mipmap/tboom_commend"
+            title="commend" />
+    <tab
+            id="@id/tab_hall"
+            icon="@mipmap/tboom_hall"
+            title="hall" />
+    <tab
+            id="@id/tab_meet"
+            icon="@mipmap/tboom_meet"
+            title="meet" />
+</PreferenceScreen>
