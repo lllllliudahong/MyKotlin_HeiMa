@@ -14,12 +14,14 @@
 
         <ImageView
                 android:id="@+id/bg"
+                android:scaleType="centerCrop"
                 android:background="@mipmap/splash_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         <ImageView
                 android:id="@+id/image"
-                android:src="@mipmap/leave_head"
+                android:scaleType="centerCrop"
+                android:background="@mipmap/leave_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

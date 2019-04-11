@@ -19,7 +19,8 @@ class FragmentUtil private constructor(){//私有化构造方法
     val mvFragment by lazy { MvFragment() }
     val vbangFragment by lazy { VBangFragment() }
     val yuedanFragment by lazy { YuedanFragment() }
-    var fragments : ArrayList<String> = ArrayList()
+//    var fragments : ArrayList<String> = ArrayList()
+    var fragments = listOf(homeFragmenty,mvFragment,vbangFragment,yuedanFragment)
     companion object {
         val fragmentUtil by lazy { FragmentUtil() }//通过懒加载，只会初始化一次，by lazy线程安全
     }
@@ -28,92 +29,49 @@ class FragmentUtil private constructor(){//私有化构造方法
     /**
      * 根据tab id 获取对应的fragment   https://www.jianshu.com/p/c4c63e43bd00
      */
-    var isNull = 0
-    fun getFragment(tabId : Int, transaction : FragmentTransaction){
+    fun getFragment(tabId : Int, transaction : FragmentTransaction, position : Int){
+//        when(tabId){
+//            R.id.tab_card ->  {
+//                    transaction.replace(R.id.container,homeFragmenty ,tabId.toString())
+//                    transaction.commit()
+//            }
+//            R.id.tab_commend ->  {
+//                    transaction.replace(R.id.container,mvFragment ,tabId.toString())
+//                    transaction.commit()
+//            }
+//            R.id.tab_hall ->  {
+//                    transaction.replace(R.id.container,vbangFragment ,tabId.toString())
+//                    transaction.commit()
+//            }
+//            R.id.tab_meet ->  {
+//                    transaction.replace(R.id.container,yuedanFragment ,tabId.toString())
+//                    transaction.commit()
+//            }
+//        }
+//        isNull = 0
+        Log.d("liuhong","position----${position}")
+       var isFragment = fragments[position]
         when(tabId){
-            R.id.tab_card ->  {
-                for (it in fragments){
-                    if(it.equals("homeFragmenty")){
-                        isNull += 1
-                    }
-                }
-                if(isNull>0){
-                    Log.d("liuhong","111----")
-                    transaction.show(homeFragmenty)
-                    transaction.hide(mvFragment)
-                    transaction.hide(vbangFragment)
-                    transaction.hide(yuedanFragment)
-                }else{
-                    Log.d("liuhong","111====")
-                    fragments.add("homeFragmenty")
-                    transaction.replace(R.id.container,homeFragmenty ,tabId.toString())
-                }
-            }
-            R.id.tab_commend ->  {
-                for (it in fragments){
-                    if(it.equals("mvFragment")){
-                        isNull += 1
-                    }
-                }
-                if(isNull>0){
-                    Log.d("liuhong","222----")
-                    transaction.show(mvFragment)
-                    transaction.hide(homeFragmenty)
-                    transaction.hide(vbangFragment)
-                    transaction.hide(yuedanFragment)
-                }else{
-                    Log.d("liuhong","222====")
-                    fragments.add("mvFragment")
-                    transaction.replace(R.id.container,mvFragment ,tabId.toString())
-                }
-            }
-            R.id.tab_hall ->  {
-                for (it in fragments){
-                    for (it in fragments){
-                        if(it.equals("vbangFragment")){
-                            isNull += 1
-                        }
-                    }
-                }
-                if(isNull>0){
-                    Log.d("liuhong","333----")
-                    transaction.show(vbangFragment)
-                    transaction.hide(homeFragmenty)
-                    transaction.hide(mvFragment)
-                    transaction.hide(yuedanFragment)
-                }else{
-                    Log.d("liuhong","333====")
-                    fragments.add("vbangFragment")
-                    transaction.replace(R.id.container,vbangFragment ,tabId.toString())
-                }
-            }
-            R.id.tab_meet ->  {
-                for (it in fragments){
-                    if(it.equals("yuedanFragment")){
-                        isNull += 1
-                    }
-                }
-                if(isNull>0){
-                    Log.d("liuhong","444----")
-                    transaction.show(yuedanFragment)
-                    transaction.hide(homeFragmenty)
-                    transaction.hide(mvFragment)
-                    transaction.hide(vbangFragment)
-                }else{
-                    Log.d("liuhong","444====")
-                    fragments.add("yuedanFragment")
-                    transaction.replace(R.id.container,yuedanFragment ,tabId.toString())
-                }
-            }
-//            R.id.tab_commend ->  mvFragment
-//            R.id.tab_hall ->  vbangFragment
-//            R.id.tab_meet ->  yuedanFragment
+            R.id.tab_card -> switchContent(position,homeFragmenty,transaction,isFragment)
+            R.id.tab_commend -> {switchContent(position,mvFragment,transaction,isFragment)}
+            R.id.tab_hall -> {switchContent(position,vbangFragment,transaction,isFragment)}
+            R.id.tab_meet -> {switchContent(position,yuedanFragment,transaction,isFragment)}
         }
-//        transaction.replace(R.id.container,fagment!! ,tabId.toString())
-        isNull = 0
-        transaction.commit()
 
     }
 
+
+    fun switchContent(i:Int, to: BaseFragment, ft : FragmentTransaction, from: BaseFragment) {
+
+        if (!to.isAdded) {
+            Log.d("liuhong","----")
+            ft.hide(from).add(R.id.container, to).show(to)
+        }else {
+            Log.d("liuhong","=====")
+            ft.hide(from).show(to) // 隐藏当前的fragment，显示下一个
+        }
+
+        ft.commit()
+    }
 
 }

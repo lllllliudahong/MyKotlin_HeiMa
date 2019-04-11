@@ -4,4 +4,5 @@
     <item name="tab_commend" type="id"/>
     <item name="tab_hall" type="id"/>
     <item name="tab_meet" type="id"/>
+    <item name="recyclerView" type="id"/>
 </resources>

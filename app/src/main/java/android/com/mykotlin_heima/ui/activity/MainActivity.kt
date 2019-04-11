@@ -35,23 +35,23 @@ class MainActivity : BaseActivity() , ToolBarManager{
             }
              true
         }
-        toolBar.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
-            override fun onMenuItemClick(p0: MenuItem?): Boolean {
-                when(p0?.itemId){
-                    R.id.setting ->{
-//                        startActivity(Intent(toolBar.context,SettingActivity::class.java))
-                        startActivity<SettingActivity>()
-                    }
-                }
-                return true
-            }
-        })
+//        toolBar.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+//            override fun onMenuItemClick(p0: MenuItem?): Boolean {
+//                when(p0?.itemId){
+//                    R.id.setting ->{
+////                        startActivity(Intent(toolBar.context,SettingActivity::class.java))
+//                        startActivity<SettingActivity>()
+//                    }
+//                }
+//                return true
+//            }
+//        })
     }
 
     override fun initListener() {
-        //设置tab切换监听
+        //设置tab切换监听onTabSelected
         bottomBar.setOnTabSelectListener{
-            FragmentUtil.fragmentUtil.getFragment(it,supportFragmentManager.beginTransaction())
+            FragmentUtil.fragmentUtil.getFragment(it,supportFragmentManager.beginTransaction(),bottomBar.currentTabPosition)
         }
     }
 }
