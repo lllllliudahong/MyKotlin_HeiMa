@@ -12,17 +12,21 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
     /**
      * 更新数据
      */
-    fun updateList(list : ArrayList<HomeItemBean>){
-        this.list.clear()
-        this.list.addAll(list)
-        notifyDataSetChanged()
+    fun updateList(list : ArrayList<HomeItemBean>?){
+        list?.let {
+            this.list.clear()
+            this.list.addAll(list)
+            notifyDataSetChanged()
+        }
     }
     /**
      * 加载更多
      */
-    fun updateMoreList(list : ArrayList<HomeItemBean>){
-        this.list.addAll(list)
-        notifyDataSetChanged()
+    fun updateMoreList(list : ArrayList<HomeItemBean>?){
+        list?.let {
+            this.list.addAll(list)
+            notifyDataSetChanged()
+        }
     }
     override fun onCreateViewHolder(p0: ViewGroup, viewType: Int): HomeHolder {
         if (viewType == 1){
