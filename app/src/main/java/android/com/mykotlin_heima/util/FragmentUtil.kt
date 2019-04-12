@@ -52,16 +52,16 @@ class FragmentUtil private constructor(){//私有化构造方法
         Log.d("liuhong","position----${position}")
        var isFragment = fragments[position]
         when(tabId){
-            R.id.tab_card -> switchContent(position,homeFragmenty,transaction,isFragment)
-            R.id.tab_commend -> {switchContent(position,mvFragment,transaction,isFragment)}
-            R.id.tab_hall -> {switchContent(position,vbangFragment,transaction,isFragment)}
-            R.id.tab_meet -> {switchContent(position,yuedanFragment,transaction,isFragment)}
+            R.id.tab_card -> switchContent(homeFragmenty,transaction,isFragment)
+            R.id.tab_commend -> {switchContent(mvFragment,transaction,isFragment)}
+            R.id.tab_hall -> {switchContent(vbangFragment,transaction,isFragment)}
+            R.id.tab_meet -> {switchContent(yuedanFragment,transaction,isFragment)}
         }
 
     }
 
 
-    fun switchContent(i:Int, to: BaseFragment, ft : FragmentTransaction, from: BaseFragment) {
+    fun switchContent(to: BaseFragment, ft : FragmentTransaction, from: BaseFragment) {
 
         if (!to.isAdded) {
             Log.d("liuhong","----")

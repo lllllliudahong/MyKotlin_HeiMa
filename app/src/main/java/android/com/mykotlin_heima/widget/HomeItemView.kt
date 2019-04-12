@@ -31,7 +31,7 @@ class HomeItemView : RelativeLayout, AnkoLogger{
         title.text = data.address
         desc.text = data.name
 
-        Picasso.with(context).load(data.img).into(bg)
+        Picasso.get().load(data.img).into(bg)
 
         this.setOnClickListener {
             context?.runOnUiThread { toast("asss---${data.id}" ) }
