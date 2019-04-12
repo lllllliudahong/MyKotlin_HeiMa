@@ -5,40 +5,17 @@ import android.com.mykotlin_heima.adapter.HomeAdapter
 import android.com.mykotlin_heima.base.BaseFragment
 import android.com.mykotlin_heima.model.HomeItemBean
 import android.com.mykotlin_heima.presenter.impl.HomeFragmentPersneterImpl
-import android.com.mykotlin_heima.util.ThreadUtil
 import android.com.mykotlin_heima.view.HomeFragmentView
 import android.graphics.Color
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import okhttp3.*
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.find
-import java.io.IOException
 
 class HomeFragment : BaseFragment(), HomeFragmentView {
-    override fun loadMoreSuccess(listHomeItemBean: ArrayList<HomeItemBean>) {
-        myToast("加载更多获取数据成功")
-        isSetIntent = true
-        adapter.updateMoreList(listHomeItemBean)
-        info { "size = ${listHomeItemBean.size}" }
-    }
-
-    override fun onError(message: String?) {
-        isSetIntent = true
-        myToast("获取数据失败")
-        refreshLayout.isRefreshing = false//隐藏刷新控件
-    }
-
-    override fun loadSuccess(listHomeItemBean: ArrayList<HomeItemBean>) {
-        myToast("获取数据成功")
-        adapter.updateList(listHomeItemBean)
-        refreshLayout.isRefreshing = false//隐藏刷新控件
-    }
-
     val adapter by lazy { HomeAdapter() }
-//    val recyclerView : RecyclerView by lazy { find(R.id.recyclerView) }
     lateinit var recyclerView : RecyclerView
     lateinit var refreshLayout : SwipeRefreshLayout
     var isSetIntent = true
@@ -50,7 +27,6 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
 
     override fun initListener() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-//        val adapter = HomeAdapter()
         recyclerView.adapter = adapter
 
 
@@ -87,6 +63,26 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
         refreshLayout = find(R.id.refreshLayout)
         refreshLayout.setColorSchemeColors(Color.RED,Color.YELLOW,Color.GRAY)
         homePersenter.loadDatas()
+    }
+
+
+    override fun loadMoreSuccess(listHomeItemBean: ArrayList<HomeItemBean>) {
+        myToast("加载更多获取数据成功")
+        isSetIntent = true
+        adapter.updateMoreList(listHomeItemBean)
+        info { "size = ${listHomeItemBean.size}" }
+    }
+
+    override fun onError(message: String?) {
+        isSetIntent = true
+        myToast("获取数据失败")
+        refreshLayout.isRefreshing = false//隐藏刷新控件
+    }
+
+    override fun loadSuccess(listHomeItemBean: ArrayList<HomeItemBean>) {
+        myToast("获取数据成功")
+        adapter.updateList(listHomeItemBean)
+        refreshLayout.isRefreshing = false//隐藏刷新控件
     }
 
 }
